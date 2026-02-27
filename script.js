@@ -9,11 +9,25 @@ function applyLanguage(lang) {
   });
 }
 
+function updateFavicon(theme) {
+  const favicon = document.getElementById("favicon");
+  if (!favicon) return;
+
+  if (theme === "dark") {
+    favicon.href = "images/favicondark.png";
+  } else {
+    favicon.href = "images/faviconlight.png";
+  }
+}
+
 function toggleTheme() {
   const current = document.documentElement.getAttribute("data-theme");
   const next = current === "dark" ? "light" : "dark";
+
   document.documentElement.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
+
+  updateFavicon(next);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const savedTheme = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
+
+  updateFavicon(savedTheme);
 
   // Expand company sections
   document.querySelectorAll(".company-header").forEach(header => {
