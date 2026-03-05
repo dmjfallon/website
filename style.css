@@ -181,6 +181,27 @@ li {
   transition: max-height 0.25s ease;
 }
 
+.company-meta a {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+
+.company-link {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.company-link:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
 .company.open .company-meta {
   max-height: 200px;
 }

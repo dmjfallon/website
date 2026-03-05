@@ -5,7 +5,12 @@ function setLanguage(lang) {
 
 function applyLanguage(lang) {
   document.querySelectorAll("[data-en]").forEach(el => {
-    el.textContent = el.getAttribute("data-" + lang);
+    const value = el.getAttribute("data-" + lang) || "";
+    if (value.includes("<br>")) {
+      el.innerHTML = value;
+    } else {
+      el.textContent = value;
+    }
   });
 }
 
@@ -20,6 +25,12 @@ function updateFavicon(theme) {
   }
 }
 
+function updateThemeToggleIcon(theme) {
+  document.querySelectorAll("[data-theme-toggle]").forEach(el => {
+    el.textContent = theme === "dark" ? "☀" : "☾";
+  });
+}
+
 function toggleTheme() {
   const current = document.documentElement.getAttribute("data-theme");
   const next = current === "dark" ? "light" : "dark";
@@ -28,6 +39,7 @@ function toggleTheme() {
   localStorage.setItem("theme", next);
 
   updateFavicon(next);
+  updateThemeToggleIcon(next);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.documentElement.setAttribute("data-theme", savedTheme);
 
   updateFavicon(savedTheme);
+  updateThemeToggleIcon(savedTheme);
 
   // Expand company sections
   document.querySelectorAll(".company-header").forEach(header => {
