@@ -81,10 +81,25 @@ nav {
 }
 
 h1 {
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
   margin-bottom: 24px;
+}
+
+.hero-headline {
+  max-width: none;
+}
+
+.hero-secondary {
+  display: block;
+  max-width: none;
+  margin-top: 0.45em;
+  font-size: 0.82em;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text);
+  opacity: 0.65;
 }
 
 h2 {
@@ -219,7 +234,11 @@ li {
   }
 
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+  }
+
+  .hero-secondary {
+    font-size: 0.86em;
   }
 
   .company-logo {
