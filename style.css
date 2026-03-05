@@ -156,6 +156,39 @@ li {
   border-bottom: 1px solid var(--text);
 }
 
+.fit-section {
+  margin-top: 28px;
+}
+
+.fit-trigger {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.fit-trigger:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+.fit-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+.fit-section.open .fit-panel {
+  max-height: 520px;
+  margin-top: 14px;
+}
+
+.fit-panel ul {
+  margin-top: 0;
+}
+
 .footer-space {
   height: 60px;
 }

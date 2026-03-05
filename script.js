@@ -59,4 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
       header.parentElement.classList.toggle("open");
     });
   });
+
+  const fitTrigger = document.querySelector(".fit-trigger");
+  const fitSection = document.querySelector(".fit-section");
+  if (fitTrigger && fitSection) {
+    fitTrigger.addEventListener("click", () => {
+      fitSection.classList.toggle("open");
+    });
+  }
 });
