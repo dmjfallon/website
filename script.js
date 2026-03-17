@@ -4,13 +4,42 @@ function setLanguage(lang) {
 }
 
 function applyLanguage(lang) {
+  document.documentElement.lang = lang;
+
   document.querySelectorAll("[data-en]").forEach(el => {
     const value = el.getAttribute("data-" + lang) || "";
-    if (value.includes("<br>")) {
+    if (/[<>&]/.test(value)) {
       el.innerHTML = value;
     } else {
       el.textContent = value;
     }
+  });
+
+  const localizedTitle = document.body?.getAttribute("data-title-" + lang);
+  if (localizedTitle) {
+    document.title = localizedTitle;
+  }
+
+  updateClocks(lang);
+}
+
+function formatTime(timeZone, lang) {
+  return new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone
+  }).format(new Date());
+}
+
+function updateClocks(lang) {
+  document.querySelectorAll("[data-uy-time]").forEach(el => {
+    el.textContent = formatTime("America/Montevideo", lang);
+  });
+
+  document.querySelectorAll("[data-local-time]").forEach(el => {
+    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    el.textContent = formatTime(localTimeZone, lang);
   });
 }
 
@@ -52,6 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateFavicon(savedTheme);
   updateThemeToggleIcon(savedTheme);
+  updateClocks(savedLang);
+
+  setInterval(() => {
+    const currentLang = localStorage.getItem("lang") || "en";
+    updateClocks(currentLang);
+  }, 30000);
 
   // Expand company sections
   document.querySelectorAll(".company-header").forEach(header => {

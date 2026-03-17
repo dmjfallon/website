@@ -21,7 +21,7 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.58;
   -webkit-font-smoothing: antialiased;
   transition: background 0.2s ease, color 0.2s ease;
 }
@@ -32,20 +32,22 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
   border-bottom: 1px solid var(--border);
   padding: 18px 24px;
   display: flex;
   justify-content: center;
   z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
 .nav-inner {
-  max-width: 760px;
+  max-width: 780px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .nav-links a {
@@ -75,31 +77,32 @@ nav {
 /* LAYOUT */
 
 .container {
-  max-width: 760px;
+  max-width: 780px;
   margin: 0 auto;
-  padding: 120px 24px 80px;
+  padding: 132px 24px 88px;
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 24px;
+  line-height: 1.24;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
 }
 
 .hero-headline {
-  max-width: none;
+  max-width: 620px;
 }
 
 .hero-secondary {
   display: block;
-  max-width: none;
-  margin-top: 0.45em;
-  font-size: 0.82em;
+  max-width: 620px;
+  margin-top: 0.55em;
+  font-size: 0.78em;
   font-weight: 500;
   line-height: 1.45;
   color: var(--text);
-  opacity: 0.65;
+  opacity: 0.68;
 }
 
 h2 {
@@ -114,7 +117,7 @@ h2 {
 }
 
 p {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 ul {
@@ -135,9 +138,9 @@ li {
 }
 
 .subline {
-  font-size: 1rem;
-  margin-top: 1rem;
-  opacity: 0.75;
+  font-size: 0.98rem;
+  margin-top: 0.8rem;
+  opacity: 0.7;
   font-weight: 500;
 }
 
@@ -145,6 +148,13 @@ li {
   margin-top: 1.5rem;
   font-size: 0.95rem;
   color: var(--muted);
+}
+
+.time-row {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.88em;
+  opacity: 0.8;
 }
 
 .contact-link {
@@ -157,7 +167,9 @@ li {
 }
 
 .fit-section {
-  margin-top: 28px;
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
 }
 
 .fit-trigger {
@@ -187,6 +199,11 @@ li {
 
 .fit-panel ul {
   margin-top: 0;
+  padding-left: 20px;
+}
+
+.fit-panel li {
+  margin-bottom: 10px;
 }
 
 .footer-space {
@@ -196,12 +213,14 @@ li {
 /* COMPANY BLOCK */
 
 .company {
-  margin-top: 70px;
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
 }
 
 .company-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 18px;
   cursor: pointer;
 }
@@ -209,24 +228,26 @@ li {
 .company-logo {
   width: 42px;
   height: auto;
-  opacity: 0.85;
+  opacity: 0.8;
   filter: grayscale(100%);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
 }
 
 .company-header:hover .company-logo {
   filter: grayscale(0%);
   opacity: 1;
+  transform: translateY(-1px);
 }
 
 .company-meta {
   margin-left: 60px;
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 0.9rem;
   color: var(--muted);
+  line-height: 1.5;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease;
+  transition: max-height 0.25s ease, margin-top 0.25s ease;
 }
 
 .company-meta a {
@@ -252,10 +273,12 @@ li {
 
 .company.open .company-meta {
   max-height: 200px;
+  margin-top: 12px;
 }
 
 .company ul {
   margin-left: 60px;
+  margin-top: 14px;
 }
 
 /* RESPONSIVE */
@@ -263,15 +286,39 @@ li {
 @media (max-width: 768px) {
 
   .container {
-    padding: 100px 20px 60px;
+    padding: 108px 20px 64px;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.58rem;
+  }
+
+  .hero-headline {
+    max-width: none;
   }
 
   .hero-secondary {
-    font-size: 0.86em;
+    max-width: none;
+    font-size: 0.84em;
+  }
+
+  nav {
+    padding: 14px 18px;
+  }
+
+  .nav-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .nav-links a {
+    margin-right: 18px;
   }
 
   .company-logo {
