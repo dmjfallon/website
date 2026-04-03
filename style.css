@@ -263,6 +263,22 @@ li {
   display: flex;
   align-items: flex-start;
   gap: 18px;
+  position: relative;
+  padding-right: 22px;
+}
+
+.company-header::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--muted);
+  border-bottom: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.8;
 }
 
 .company-logo {
@@ -273,10 +289,19 @@ li {
   transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
 }
 
-.company-header:hover .company-logo {
+.company:hover .company-logo {
   filter: grayscale(0%);
   opacity: 1;
   transform: translateY(-1px);
+}
+
+.company:hover .company-header::after {
+  border-color: var(--text);
+}
+
+.company.open .company-header::after {
+  transform: rotate(225deg);
+  border-color: var(--text);
 }
 
 .company-meta {
