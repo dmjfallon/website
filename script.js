@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const savedLang = localStorage.getItem("lang") || "en";
   applyLanguage(savedLang);
 
-  const savedTheme = localStorage.getItem("theme") || "light";
+  const savedTheme = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", savedTheme);
 
   updateFavicon(savedTheme);
@@ -89,17 +89,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 30000);
 
   // Expand company sections
-  document.querySelectorAll(".company-header").forEach(header => {
-    header.addEventListener("click", () => {
-      header.parentElement.classList.toggle("open");
+  document.querySelectorAll(".company").forEach(company => {
+    company.addEventListener("click", event => {
+      if (event.target.closest(".company-link")) return;
+      company.classList.toggle("open");
     });
   });
 
-  const fitTrigger = document.querySelector(".fit-trigger");
-  const fitSection = document.querySelector(".fit-section");
-  if (fitTrigger && fitSection) {
-    fitTrigger.addEventListener("click", () => {
-      fitSection.classList.toggle("open");
+  document.querySelectorAll(".section-trigger").forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      trigger.parentElement.classList.toggle("open");
     });
-  }
+  });
 });

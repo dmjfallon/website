@@ -150,6 +150,39 @@ li {
   color: var(--muted);
 }
 
+.about-lead {
+  max-width: 640px;
+  margin-bottom: 22px;
+  font-size: 1.16rem;
+  line-height: 1.5;
+}
+
+.about-points {
+  max-width: 640px;
+  margin: 0 0 24px;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.about-points li {
+  position: relative;
+  margin-bottom: 12px;
+  padding-left: 18px;
+}
+
+.about-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--text);
+  opacity: 0.55;
+}
+
 .time-row {
   display: block;
   margin-top: 0.35rem;
@@ -166,44 +199,51 @@ li {
   border-bottom: 1px solid var(--text);
 }
 
-.fit-section {
-  margin-top: 32px;
+.home-section {
+  max-width: 640px;
+  margin-top: 36px;
   padding-top: 22px;
   border-top: 1px solid var(--border);
 }
 
-.fit-trigger {
+.section-title {
   display: inline-block;
   margin-bottom: 0;
   padding-bottom: 2px;
-  border-bottom: 1px solid var(--border);
+  font-size: 0.96rem;
+  font-weight: 600;
   color: var(--muted);
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
 }
 
-.fit-trigger:hover {
+.section-title:hover {
   color: var(--text);
   border-bottom-color: var(--text);
 }
 
-.fit-panel {
+.section-panel {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.25s ease, margin-top 0.25s ease;
 }
 
-.fit-section.open .fit-panel {
+.collapsible-section.open .section-panel {
   max-height: 520px;
   margin-top: 14px;
 }
 
-.fit-panel ul {
+.section-points {
   margin-top: 0;
   padding-left: 20px;
 }
 
-.fit-panel li {
+.section-points li {
   margin-bottom: 10px;
+}
+
+.section-points .time-row {
+  margin-top: 0.45rem;
 }
 
 .footer-space {
@@ -216,13 +256,13 @@ li {
   margin-top: 56px;
   padding-top: 28px;
   border-top: 1px solid var(--border);
+  cursor: pointer;
 }
 
 .company-header {
   display: flex;
   align-items: flex-start;
   gap: 18px;
-  cursor: pointer;
 }
 
 .company-logo {
@@ -272,13 +312,42 @@ li {
 }
 
 .company.open .company-meta {
-  max-height: 200px;
+  max-height: none;
+  margin-top: 0;
+}
+
+.company-summary {
+  margin: 10px 0 0 60px;
+  max-width: 620px;
+  color: var(--text);
+}
+
+.company-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+.company.open .company-panel {
+  max-height: 720px;
   margin-top: 12px;
 }
 
-.company ul {
+.company-panel .company-meta {
+  margin-left: 60px;
+  margin-top: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.company-panel ul {
   margin-left: 60px;
   margin-top: 14px;
+  padding-bottom: 4px;
+}
+
+.company-panel li {
+  margin-bottom: 8px;
 }
 
 /* RESPONSIVE */
@@ -325,8 +394,9 @@ li {
     width: 36px;
   }
 
-  .company-meta,
-  .company ul {
+  .company-summary,
+  .company-panel .company-meta,
+  .company-panel ul {
     margin-left: 48px;
   }
 }
